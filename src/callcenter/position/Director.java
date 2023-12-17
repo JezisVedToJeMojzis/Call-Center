@@ -8,9 +8,8 @@ import java.util.UUID;
 
 public class Director extends Employee {
     private static Director instance;
-    private Director() {
-    }
 
+    // Singleton instance of Director
     public static Director getInstance() {
         if (instance == null) {
             instance = new Director();
@@ -18,18 +17,19 @@ public class Director extends Employee {
         return instance;
     }
     @Override
-    public void processCall(Call call) {
-        if (isInCall() || isOnBreak()) {
-            System.out.println("Director is not available. Please wait in the queue.");
-           // escalate(call);
-        } else {
-            System.out.println("Director " + " (ID: " + getId() + ") is handling the call");
-            setInCall(true);
-            call.setCallHandler(this); // Assign the Director instance as the call handler
+    public void receiveCall(Call call) {
+        // Director is not available
+        if (isInCall()) {
+            System.out.println("Director is not available. Please try calling later.");
+        } else { // Director is available
+            System.out.println("Director " + " (ID: " + getId() + ", Experience level: " + getExperienceLevel() + ") is handling the call " + "(Required experience level: " + call.getRequiredExperienceLevel() + ")");
+            assignCallToEmployee(call, this, true); // Connecting call and director
         }
     }
 
-//    private void escalate(Call call) {
-//        CallCenter.getInstance().dispatchCall(call, this.getClass());
-//    }
+    // Function to assign call to specific employee instance
+    public void assignCallToEmployee(Call call, Employee employee, Boolean callAssigned){
+        setInCall(callAssigned); // set employees status as in call
+        call.setCallHandler(employee); // Assign the employee instance as the call handler
+    }
 }

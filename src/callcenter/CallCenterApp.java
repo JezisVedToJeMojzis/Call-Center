@@ -1,5 +1,6 @@
 package callcenter;
 
+import callcenter.factory.*;
 import callcenter.position.Director;
 import callcenter.position.Manager;
 import callcenter.position.Respondent;
@@ -9,24 +10,42 @@ import java.util.List;
 public class CallCenterApp {
     public static void main(String[] args) {
 
-        // Get the one and only instance of call center
-        CallCenter callCenter = CallCenter.getInstance();
+        // Singleton instance of call center
+        CallCenterFactory callCenterFactory = new CallCenterFactory();
+        CallCenter callCenter = callCenterFactory.createCallCenter();
 
-        // Only one director and manager
-        Employee director = Director.getInstance();
-        Employee manager = Manager.getInstance();
+        // Singleton instance of director
+        EmployeeFactory directorFactory = new DirectorFactory();
+        Employee director = directorFactory.createEmployee();
 
-        // Multiple respondents
-        Employee respondent1 = new Respondent();
-        Employee respondent2 = new Respondent();
+        // Singleton instance of manager
+        EmployeeFactory managerFactory = new ManagerFactory();
+        Employee manager = managerFactory.createEmployee();
 
-        // Add employees to the CallCenter
-        callCenter.hireEmployee(manager);
-        callCenter.hireEmployee(director);
-        callCenter.hireEmployee(respondent1);
-        callCenter.hireEmployee(respondent2);
+        // Respondents
+        EmployeeFactory respondentFactory = new RespondentFactory();
+        Employee respondent1 = respondentFactory.createEmployee();
+        Employee respondent2 = respondentFactory.createEmployee();
+        Employee respondent3 = respondentFactory.createEmployee();
 
-//        Call call1 = new Call();
+        // Incoming calls
+        CallFactory callFactory = new CallFactory();
+        Call call1 = callFactory.createCall();
+        Call call2 = callFactory.createCall();
+        Call call3 = callFactory.createCall();
+        Call call4 = callFactory.createCall();
+        Call call5 = callFactory.createCall();
+        Call call6 = callFactory.createCall();
 
+        call2.setRequiredExperienceLevel(6);
+
+        System.out.println("Instance details: " + callCenter.toString());
+
+        callCenter.dispatchCall(call1);
+        callCenter.dispatchCall(call2);
+        callCenter.dispatchCall(call3);
+        callCenter.dispatchCall(call4);
+        callCenter.dispatchCall(call5);
+        callCenter.dispatchCall(call6);
     }
 }

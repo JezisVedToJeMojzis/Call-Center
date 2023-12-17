@@ -4,10 +4,11 @@ import java.util.UUID;
 
 public class Call {
 
-    private UUID id = UUID.randomUUID();
-    private Employee callHandler; // employee that is handling the call
+    private UUID id = UUID.randomUUID(); // assign random ID to call
+    private Integer requiredExperienceLevel = 1; // Default is the lowest exp level
+    private Employee callHandler = null; // employee that is handling the call
     private boolean inQueue = false;
-    private boolean callEnded = false;
+    private boolean callEnded = false; // call is finished
 
     public void endCall() {
         if (callHandler != null) {
@@ -21,19 +22,25 @@ public class Call {
         }
     }
 
-    public Call(UUID id, Employee callHandler, boolean inQueue, boolean callEnded) {
-        this.id = UUID.randomUUID();
-        this.callHandler = callHandler;
-        this.inQueue = inQueue;
-        this.callEnded = callEnded;
+    // Constructor
+    public Call() {
     }
 
+    // Getters/Setters
     public UUID getId() {
         return id;
     }
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public Integer getRequiredExperienceLevel() {
+        return requiredExperienceLevel;
+    }
+
+    public void setRequiredExperienceLevel(Integer requiredExperienceLevel) {
+        this.requiredExperienceLevel = requiredExperienceLevel;
     }
 
     public Employee getCallHandler() {
@@ -58,5 +65,15 @@ public class Call {
 
     public void setCallEnded(boolean callEnded) {
         this.callEnded = callEnded;
+    }
+
+    @Override
+    public String toString() {
+        return "Call{" +
+                "id=" + id +
+                ", callHandler=" + callHandler +
+                ", inQueue=" + inQueue +
+                ", callEnded=" + callEnded +
+                '}';
     }
 }
