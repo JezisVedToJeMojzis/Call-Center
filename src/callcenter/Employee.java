@@ -6,11 +6,10 @@ public abstract class Employee {
     private UUID id = UUID.randomUUID(); // assign random ID to employee
     private String position;
     private Integer experienceLevel;
-    private boolean inCall = false;
+    private UUID assignedCall = null;
 
     public abstract void receiveCall(Call call);
-
-    //public abstract void escalateCall(Call call);
+    public abstract void finishCall();
 
     // Constructor
     public Employee() {
@@ -33,12 +32,12 @@ public abstract class Employee {
         this.experienceLevel = experienceLevel;
     }
 
-    public boolean isInCall() {
-        return inCall;
+    public UUID getAssignedCall() {
+        return assignedCall;
     }
 
-    public void setInCall(boolean inCall) {
-        this.inCall = inCall;
+    public void setAssignedCall(UUID assignedCall) {
+        this.assignedCall = assignedCall;
     }
 
     @Override
@@ -46,7 +45,8 @@ public abstract class Employee {
         return "Employee{" +
                 "id=" + id +
                 ", position='" + position + '\'' +
-                ", inCall=" + inCall +
+                ", experienceLevel=" + experienceLevel +
+                ", assignedCall=" + assignedCall +
                 '}';
     }
 }

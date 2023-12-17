@@ -26,7 +26,6 @@ public class CallCenterApp {
         EmployeeFactory respondentFactory = new RespondentFactory();
         Employee respondent1 = respondentFactory.createEmployee();
         Employee respondent2 = respondentFactory.createEmployee();
-        Employee respondent3 = respondentFactory.createEmployee();
 
         // Incoming calls
         CallFactory callFactory = new CallFactory();
@@ -35,17 +34,31 @@ public class CallCenterApp {
         Call call3 = callFactory.createCall();
         Call call4 = callFactory.createCall();
         Call call5 = callFactory.createCall();
-        Call call6 = callFactory.createCall();
 
-        call2.setRequiredExperienceLevel(6);
 
-        System.out.println("Instance details: " + callCenter.toString());
+        call1.setRequiredExperienceLevel(2);
+        call2.setRequiredExperienceLevel(5);
+        call3.setRequiredExperienceLevel(5);
+        call4.setRequiredExperienceLevel(5);
+        call5.setRequiredExperienceLevel(5);
 
+
+
+      //  System.out.println("Instance details: " + callCenter.toString());
+//
         callCenter.dispatchCall(call1);
         callCenter.dispatchCall(call2);
         callCenter.dispatchCall(call3);
         callCenter.dispatchCall(call4);
         callCenter.dispatchCall(call5);
-        callCenter.dispatchCall(call6);
+
+//        System.out.println("Instance details: " + respondent1.toString());
+//        System.out.println("Instance details: " + call1.toString());
+
+        respondent1.finishCall();
+
+        manager.finishCall();
+
+
     }
 }
