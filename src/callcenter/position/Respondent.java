@@ -14,12 +14,12 @@ public class Respondent extends Employee {
         // Respondent is available
         // Check if respondent has enough of experience to handle the call
         if(enoughExperienceLevel(getExperienceLevel(), call.getRequiredExperienceLevel()) == false){
+            System.out.println("Respondent" + " (ID: " + getId() + ", Experience level: " + getExperienceLevel() + ") is now handling the call " + "(ID: " + call.getId() + ", Required experience level: " + call.getRequiredExperienceLevel() + ")");
             System.out.println("Respondent is not able to handle this call. Escalating the call to Manager...");
             escalateCall(call); // Escalating call to manager
-          //  finishCall(); // Respondent is available again
         }
         else{
-            System.out.println("Respondent " + " (ID: " + getId() + ", Experience level: " + getExperienceLevel() + ") is handling the call " + "(ID: " + call.getId() + ", Required experience level: " + call.getRequiredExperienceLevel() + ")");
+            System.out.println("Respondent" + " (ID: " + getId() + ", Experience level: " + getExperienceLevel() + ") is now handling the call " + "(ID: " + call.getId() + ", Required experience level: " + call.getRequiredExperienceLevel() + ")");
             assignCallToEmployee(call, this, true); // Connecting call and respondent
         }
     }
@@ -41,8 +41,9 @@ public class Respondent extends Employee {
 
     // Method to escalate call if the Respondent is not available or not able to handle call
     public void escalateCall(Call call) {
+        setAssignedCall(null);
         Manager.getInstance().receiveCall(call); // Escalating the call to manager
-      //  CallCenter.getInstance().processQueue(this); // Employee can get a new call
+        CallCenter.getInstance().processQueue(this); // Employee can get a new call
     }
 
     // Method to finish call and check for new one

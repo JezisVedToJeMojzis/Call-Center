@@ -93,12 +93,13 @@ public class CallCenter {
     // Method to connect a call to employee
     public void dispatchCall(Call call) {
         callQueueForRespondents.add(call); // add call to queue
+        call.setInQueue(true);
         Employee freeRespondent = getFreeRespondent(); // get free respondent
         if (freeRespondent != null) {
             processQueue(freeRespondent); // Processing first call in the queue (sending to respondent)
         } else{
-            throw new NullException("All respondents are busy.");
-
+            System.out.println("All respondents are busy. Please wait in the queue.");
+            //throw new NullException("All respondents are busy.");
         }
     }
 
@@ -114,38 +115,37 @@ public class CallCenter {
 
     // Method to process first call in the queue
     public void processQueue(Employee employee) {
-
         // Calls only for respondents
         if (employee instanceof Respondent) {
             Call queuedCallForRespondent = callQueueForRespondents.poll();  // Selecting the first call in queue
             if(queuedCallForRespondent != null){
                 employee.receiveCall(queuedCallForRespondent); // Respondent receiving the call from queue
-                //System.out.println("Respondent queue: " + callQueueForRespondents);
             }
             else{
-                throw new NullException("There is no call in the queue for respondent.");
+                System.out.println("There are no calls in the queue intended for respondents.");
+               // throw new NullException("There is no call in the queue for respondent.");
             }
         }
         // Calls only for director
-        else if (employee instanceof Director) { // Higher priority calls
+        if (employee instanceof Director) { // Higher priority calls
             Call queuedCallForDirector = callQueueForDirector.poll();  // Selecting the first call in queue
             if(queuedCallForDirector != null){
                 employee.receiveCall(queuedCallForDirector); // Director receiving the call from queue
-               // System.out.println("Director queue: " + callQueueForDirector);
             }
             else{
-                throw new NullException("There is no call in the queue for director.");
+                System.out.println("There are no calls in the queue intended only for director.");
+                //throw new NullException("There is no call in the queue for director.");
             }
         }
         // Calls for both manager and director
-        else if (employee instanceof Manager || employee instanceof Director) {
+        if ((employee instanceof Manager) || (employee instanceof Director)) {
             Call queuedCallForManagerOrDirector = callQueueForManagerOrDirector.poll();  // Selecting the first call in queue
             if(queuedCallForManagerOrDirector != null){
                 employee.receiveCall(queuedCallForManagerOrDirector); // Receiving the call from queue
-               // System.out.println("Director queue: " + callQueueForDirector);
             }
             else{
-                throw new NullException("There is no call in the queue for director or manager.");
+                System.out.println("There are no calls in the queue intended for both manager and director.");
+               // throw new NullException("There is no call in the queue for both director and manager.");
             }
         }
     }
@@ -179,14 +179,21 @@ public class CallCenter {
             throw new DuplicateIdException("Call with ID " + finishedCall.getId() + " is already in the queue.");
         }
     }
-    @Override
-    public String toString() {
-        return "CallCenter{" +
-                "employees=" + employees +
-                ", finishedCalls=" + finishedCalls +
-                ", callQueueForRespondents=" + callQueueForRespondents +
-                ", callQueueForManagerOrDirector=" + callQueueForManagerOrDirector +
-                ", callQueueForDirector=" + callQueueForDirector +
-                '}';
+
+    // Getters/Setters
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+    public List<Call> getFinishedCalls() {
+        return finishedCalls;
+    }
+    public Queue<Call> getCallQueueForRespondents() {
+        return callQueueForRespondents;
+    }
+    public Queue<Call> getCallQueueForManagerOrDirector() {
+        return callQueueForManagerOrDirector;
+    }
+    public Queue<Call> getCallQueueForDirector() {
+        return callQueueForDirector;
     }
 }

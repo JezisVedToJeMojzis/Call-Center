@@ -25,7 +25,7 @@ public class Director extends Employee {
             System.out.println("Director is not available. Please wait in the queue.");
             CallCenter.getInstance().addToQueue(call); // Adding call to queue
         } else { // Director is available
-            System.out.println("Director " + " (ID: " + getId() + ", Experience level: " + getExperienceLevel() + ") is handling the call " + "(ID: " + call.getId() + ", Required experience level: " + call.getRequiredExperienceLevel() + ")");
+            System.out.println("Director " + " (ID: " + getId() + ", Experience level: " + getExperienceLevel() + ") is now handling the call " + "(ID: " + call.getId() + ", Required experience level: " + call.getRequiredExperienceLevel() + ")");
             assignCallToEmployee(call, this, true); // Connecting call and director
         }
     }

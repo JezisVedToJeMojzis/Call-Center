@@ -29,10 +29,11 @@ public class Manager extends Employee {
             // Manager does not have enough of experience to handle the call
             if(enoughExperienceLevel(getExperienceLevel(), call.getRequiredExperienceLevel()) == false){
                 System.out.println("Manager is not able to handle this call. Escalating the call to Director...");
+                setAssignedCall(null);
                 escalateCall(call); // Escalating call to director
-                //finishCall(); // Manager is available again
+                CallCenter.getInstance().processQueue(this); // Employee can get a new call
             }else{ // Manager has enough of experience to handle the call
-                System.out.println("Manager " + " (ID: " + getId() + ", Experience level: " + getExperienceLevel() + ") is handling the call " + "(ID: " + call.getId() + ", Required experience level: " + call.getRequiredExperienceLevel() + ")");
+                System.out.println("Manager " + " (ID: " + getId() + ", Experience level: " + getExperienceLevel() + ") is now handling the call " + "(ID: " + call.getId() + ", Required experience level: " + call.getRequiredExperienceLevel() + ")");
                 assignCallToEmployee(call, this, true); // Connecting call and manager
             }
         }
@@ -56,7 +57,6 @@ public class Manager extends Employee {
     // Method to escalate call if the Manager is not available or not able to handle call
     public void escalateCall(Call call) {
         Director.getInstance().receiveCall(call); // Escalating the call to director
-      //  CallCenter.getInstance().processQueue(this); // Employee can get a new call
     }
 
     // Method to finish call and check for new one

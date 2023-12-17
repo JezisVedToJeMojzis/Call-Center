@@ -3,17 +3,11 @@ package callcenter;
 import java.util.UUID;
 
 public class Call {
-
     private UUID id = UUID.randomUUID(); // assign random ID to call
     private Integer requiredExperienceLevel = 1; // Default is the lowest exp level
     private UUID callHandler = null; // employee that is handling the call
     private boolean inQueue = false;
     private boolean callEnded = false; // call is finished
-
-    public void closeCall() {
-        setInQueue(false);
-        setCallEnded(true);
-    }
 
     // Constructor
     public Call() {
@@ -48,6 +42,7 @@ public class Call {
     public String toString() {
         return "Call{" +
                 "id=" + id +
+                ", requiredExperienceLevel=" + requiredExperienceLevel +
                 ", callHandler=" + callHandler +
                 ", inQueue=" + inQueue +
                 ", callEnded=" + callEnded +

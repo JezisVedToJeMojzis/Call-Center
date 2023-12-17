@@ -20,6 +20,10 @@ public abstract class Employee {
         return id;
     }
 
+    public String getPosition() {
+        return position;
+    }
+
     public void setPosition(String position) {
         this.position = position;
     }
@@ -39,6 +43,7 @@ public abstract class Employee {
     public void setAssignedCall(UUID assignedCall) {
         this.assignedCall = assignedCall;
     }
+
 
     @Override
     public String toString() {
