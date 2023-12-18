@@ -1,5 +1,7 @@
 package callcenter;
 
+import callcenter.exception.OutOfScopeException;
+
 import java.util.UUID;
 
 public class Call {
@@ -27,6 +29,7 @@ public class Call {
             this.requiredExperienceLevel = requiredExperienceLevel;
         }else{
             System.out.println("Required experience level is out of scope (must be between 1-10).");
+           // throw new OutOfScopeException("Required experience level is out of scope (must be a number between 1-10).");
         }
     }
 
