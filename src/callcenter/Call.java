@@ -23,7 +23,11 @@ public class Call {
     }
 
     public void setRequiredExperienceLevel(Integer requiredExperienceLevel) {
-        this.requiredExperienceLevel = requiredExperienceLevel;
+        if(requiredExperienceLevel <= 10){
+            this.requiredExperienceLevel = requiredExperienceLevel;
+        }else{
+            System.out.println("Required experience level is out of scope (must be between 1-10).");
+        }
     }
 
     public void setCallHandler(UUID callHandler) {

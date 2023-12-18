@@ -35,7 +35,23 @@ public class ConsoleInterface {
         System.out.println("WELCOME TO THE CALL CENTER APP!");
         System.out.println("********************************************************************************");
 
-        System.out.println("- First we choose the number (must be integer) of respondents.");
+        System.out.println("\nKNOW HOW:");
+        System.out.println("Call center consists of 3 types of employees: Respondents, Manager and Director.");
+        System.out.println("Each type of employee has a specific experience level: Respondents: lvl 3, Manager: lvl 5, Director: lvl 10.");
+        System.out.println("There is no limit for respondents, but there can be only one manager and director.");
+        System.out.println("Incoming calls to call center can have required experience level from 1 (lowest) to 10 (max).");
+        System.out.println("You can first create wanted calls, and then dispatch them (calls wont be processed if not dispatched).");
+        System.out.println("These calls are first assigned to available respondent (the one which is currently not in call).");
+        System.out.println("If there is no available respondent, the call is being put into waiting queue, and will be assigned to a respondent once they finish their call.");
+        System.out.println("If respondents experience level is lower that the required experience level of call, the call is being escalated to manager.");
+        System.out.println("If manager is not available or their level is also below required experience level of call, the call is being escalated to director.");
+        System.out.println("If director is not available, the call is being put into waiting queue.");
+        System.out.println("There is a waiting queue for both manager and director (both director and manager were not available but their level of experience satisfies the required level of experience).");
+        System.out.println("There is also a waiting queue only for director. Only he satisfies the required level of experiences but was not available (this queue has higher priority for him).");
+        System.out.println("After finishing call, the call is stored in list of finished calls.");
+        System.out.println("You can navigate through the CLI using commands explained later in manual.");
+
+        System.out.println("- First we choose the number (must be integer) of respondents. Note: There is only one manager and director by default.");
         Integer inputNumberOfRespondents = KeyboardInput.readInt("\nChoose the number of respondents:  ");
         for (int i = 0; i < inputNumberOfRespondents; i++) {
             respondentFactory.createEmployee();
@@ -45,7 +61,7 @@ public class ConsoleInterface {
         System.out.println("Below you can see the details of the respondents + their manager and director within the call center. Note: Every employee has a specific level of experience.");
         System.out.println("Employees of call center: " + callCenter.getEmployees());
 
-        System.out.println("Press 1 and enter to view the manual...");
+        System.out.println("\nPress 1 and enter to view the manual...");
 
         while (true) {
             Integer control = KeyboardInput.readInt("\nAdd command (1 = manual)...");
@@ -91,7 +107,7 @@ public class ConsoleInterface {
                 case 8:
                     System.out.println("\nYou have chosen to create a new call!");
                     Call call = callFactory.createCall();
-                    call.setRequiredExperienceLevel(KeyboardInput.readInt("Choose level of experience needed for this call (must be integer):"));
+                    call.setRequiredExperienceLevel(KeyboardInput.readInt("Choose level of experience needed for this call (must be integer between 1-10):"));
                     callsToDispatch.add(call);
                     continue;
                 case 9:
