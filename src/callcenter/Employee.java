@@ -10,6 +10,7 @@ public abstract class Employee {
 
     public abstract void receiveCall(Call call);
     public abstract void finishCall();
+    public abstract void assignCallToEmployee(Call call, Employee employee, Boolean callAssigned);
 
     // Constructor
     public Employee() {

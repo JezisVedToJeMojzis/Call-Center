@@ -64,8 +64,8 @@ public class ConsoleInterface {
         System.out.println("\nPress 1 and enter to view the manual...");
 
         while (true) {
-            Integer control = KeyboardInput.readInt("\nAdd command (1 = manual)...");
-            switch (control) {
+            Integer command = KeyboardInput.readInt("\nAdd command (1 = manual)...");
+            switch (command) {
                 case 1:
                     System.out.println("\nManual (press enter after each option):");
                     System.out.println("- Press 0 to end session.");
