@@ -38,11 +38,11 @@ public class ConsoleInterface {
         System.out.println("\nKNOW HOW:");
         System.out.println("Call center consists of 3 types of employees: Respondents, Manager and Director.");
         System.out.println("Each type of employee has a specific experience level: Respondents: lvl 3, Manager: lvl 5, Director: lvl 10.");
-        System.out.println("There is no limit for respondents, but there can be only one manager and director.");
+        System.out.println("There is no limit for respondents, but there is only one manager and director by default.");
         System.out.println("Incoming calls to call center can have required experience level from 1 (lowest) to 10 (max).");
         System.out.println("You can first create wanted calls, and then dispatch them (calls wont be processed if not dispatched).");
         System.out.println("These calls are first assigned to available respondent (the one which is currently not in call).");
-        System.out.println("If there is no available respondent, the call is being put into waiting queue, and will be assigned to a respondent once they finish their call.");
+        System.out.println("If there is no available respondent, the call is being put into waiting queue for respondents, and will be assigned to a respondent once they finish their call.");
         System.out.println("If respondents experience level is lower that the required experience level of call, the call is being escalated to manager.");
         System.out.println("If manager is not available or their level is also below required experience level of call, the call is being escalated to director.");
         System.out.println("If director is not available, the call is being put into waiting queue.");
@@ -51,7 +51,7 @@ public class ConsoleInterface {
         System.out.println("After finishing call, the call is stored in list of finished calls.");
         System.out.println("You can navigate through the CLI using commands explained later in manual.");
 
-        System.out.println("- First we choose the number (must be integer) of respondents. Note: There is only one manager and director by default.");
+        System.out.println("\n\n- First we choose the number (must be integer) of respondents. Note: There is only one manager and director by default.");
         Integer inputNumberOfRespondents = KeyboardInput.readInt("\nChoose the number of respondents:  ");
         for (int i = 0; i < inputNumberOfRespondents; i++) {
             respondentFactory.createEmployee();
@@ -129,6 +129,7 @@ public class ConsoleInterface {
                     }
                     continue;
                 case 0:
+                    System.out.println("\nTurning off. Bye!");
                     return;
             }
         }
