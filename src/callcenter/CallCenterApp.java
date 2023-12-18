@@ -31,28 +31,24 @@ public class CallCenterApp {
 //        Call call4 = callFactory.createCall();
 //        Call call5 = callFactory.createCall();
 //
-//
+//        // Set required experience level for calls
 //        call1.setRequiredExperienceLevel(2);
-//        call2.setRequiredExperienceLevel(5);
+//        call2.setRequiredExperienceLevel(3);
 //        call3.setRequiredExperienceLevel(5);
 //        call4.setRequiredExperienceLevel(5);
-//        call5.setRequiredExperienceLevel(5);
+//        call5.setRequiredExperienceLevel(7);
 //
-//
-//
-//      //  System.out.println("Instance details: " + callCenter.toString());
-////
+//        // Dispatch calls
 //        callCenter.dispatchCall(call1);
 //        callCenter.dispatchCall(call2);
 //        callCenter.dispatchCall(call3);
 //        callCenter.dispatchCall(call4);
 //        callCenter.dispatchCall(call5);
 //
-////        System.out.println("Instance details: " + respondent1.toString());
-////        System.out.println("Instance details: " + call1.toString());
+//        System.out.println("Instance details: " + respondent1.toString());
+//        System.out.println("Instance details: " + call1.toString());
 //
 //        respondent1.finishCall();
-//
 //        manager.finishCall();
 
           ConsoleInterface.controller();
