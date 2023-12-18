@@ -23,7 +23,7 @@ public class Call {
     }
 
     public void setRequiredExperienceLevel(Integer requiredExperienceLevel) {
-        if(requiredExperienceLevel <= 10){
+        if(requiredExperienceLevel >= 1 && requiredExperienceLevel <= 10){
             this.requiredExperienceLevel = requiredExperienceLevel;
         }else{
             System.out.println("Required experience level is out of scope (must be between 1-10).");
