@@ -82,27 +82,39 @@ public class ConsoleInterface {
                     continue;
                 case 2:
                     System.out.println("\nCalls waiting to be dispatched:");
-                    System.out.println(callsToDispatch);
+                    for(Call call : callsToDispatch){
+                        System.out.println(call);
+                    }
                     continue;
                 case 3:
                     System.out.println("\nCalls in queue for respondents:");
-                    System.out.println(callCenter.getCallQueueForRespondents());
+                    for(Call call : callCenter.getCallQueueForRespondents()){
+                        System.out.println(call);
+                    }
                     continue;
                 case 4:
                     System.out.println("\nCalls in queue for both manager and director:");
-                    System.out.println(callCenter.getCallQueueForManagerOrDirector());
+                    for(Call call : callCenter.getCallQueueForManagerOrDirector()){
+                        System.out.println(call);
+                    }
                     continue;
                 case 5:
                     System.out.println("\nCalls in queue for director:");
-                    System.out.println(callCenter.getCallQueueForDirector());
+                    for(Call call : callCenter.getCallQueueForDirector()){
+                        System.out.println(call);
+                    }
                     continue;
                 case 6:
                     System.out.println("\nFinished calls:");
-                    System.out.println(callCenter.getFinishedCalls());
+                    for(Call finCall : callCenter.getFinishedCalls()){
+                        System.out.println(finCall);
+                    }
                     continue;
                 case 7:
                     System.out.println("\nEmployees of call center:");
-                    System.out.println(callCenter.getEmployees());
+                    for(Employee employee : callCenter.getEmployees()){
+                        System.out.println(employee);
+                    }
                     continue;
                 case 8:
                     System.out.println("\nYou have chosen to create a new call!");
@@ -125,6 +137,9 @@ public class ConsoleInterface {
                         if(employee.getId().equals(uuid) && employee.getAssignedCall() != null){
                             System.out.println("\n" + employee.getPosition() + " (ID: " + employee.getId() + ") has finished call and is checking if there are other calls for him in the queue.");
                             employee.finishCall();
+                        }
+                        else if(employee.getId().equals(uuid) && employee.getAssignedCall() == null){
+                            System.out.println("\n" + employee.getPosition() + " (ID: " + employee.getId() + ") is not in a call.");
                         }
                     }
                     continue;

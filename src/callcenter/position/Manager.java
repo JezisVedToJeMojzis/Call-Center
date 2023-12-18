@@ -22,13 +22,13 @@ public class Manager extends Employee {
     public void receiveCall(Call call) {
         // Manager is not available
         if(getAssignedCall() != null){
-            System.out.println("Manager is not available. Escalating the call to Director...");
+            System.out.println("Manager " + "(ID: " + getId() + ") is not available. Escalating the call to Director...");
             escalateCall(call); // Escalating call to director
         }
         else{ // Manager is available
             // Manager does not have enough of experience to handle the call
             if(enoughExperienceLevel(getExperienceLevel(), call.getRequiredExperienceLevel()) == false){
-                System.out.println("Manager is not able to handle this call. Escalating the call to Director...");
+                System.out.println("Manager " + "(ID: " + getId() + ") is not able to handle this call. Escalating the call to Director...");
                 setAssignedCall(null);
                 escalateCall(call); // Escalating call to director
                 CallCenter.getInstance().processQueue(this); // Employee can get a new call
@@ -61,9 +61,13 @@ public class Manager extends Employee {
 
     // Method to finish call and check for new one
     @Override
-    public void finishCall(){
-        setAssignedCall(null); // Respondent is available again
-        CallCenter.getInstance().addToFinishedCalls(this.getAssignedCall()); // Adding call to list of finished calls
-        CallCenter.getInstance().processQueue(this); // Employee can get a new call
+    public void finishCall() {
+        if (getAssignedCall() != null) {
+            setAssignedCall(null); // Manager is available again
+            CallCenter.getInstance().processQueue(this); // Employee can get a new call
+            CallCenter.getInstance().addToFinishedCalls(this.getAssignedCall()); // Adding call to list of finished calls
+        } else {
+            System.out.println("Manager (ID: " + getId() + ") is not in a call.");
+        }
     }
 }

@@ -22,7 +22,7 @@ public class Director extends Employee {
     public void receiveCall(Call call) {
         // Director is not available
         if (getAssignedCall() != null) {
-            System.out.println("Director is not available. Please wait in the queue.");
+            System.out.println("Director " + "(ID: " + getId() + ") is not available. Please wait in the queue.");
             CallCenter.getInstance().addToQueue(call); // Adding call to queue
         } else { // Director is available
             System.out.println("Director " + " (ID: " + getId() + ", Experience level: " + getExperienceLevel() + ") is now handling the call " + "(ID: " + call.getId() + ", Required experience level: " + call.getRequiredExperienceLevel() + ")");
@@ -40,8 +40,12 @@ public class Director extends Employee {
     // Method to finish call and check for new one
     @Override
     public void finishCall(){
-        setAssignedCall(null); // Respondent is available again
-        CallCenter.getInstance().processQueue(this); // Employee can get a new call
-        CallCenter.getInstance().addToFinishedCalls(this.getAssignedCall()); // Adding call to list of finished calls
+        if(getAssignedCall() != null){
+            setAssignedCall(null); // Director is available again
+            CallCenter.getInstance().processQueue(this); // Employee can get a new call
+            CallCenter.getInstance().addToFinishedCalls(this.getAssignedCall()); // Adding call to list of finished calls
+        }else{
+            System.out.println("Director (ID: " + getId() + ") is not in a call.");
+        }
     }
 }

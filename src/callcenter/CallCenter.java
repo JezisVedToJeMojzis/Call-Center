@@ -138,7 +138,7 @@ public class CallCenter {
             }
         }
         // Calls for both manager and director
-        if ((employee instanceof Manager) || (employee instanceof Director)) {
+        else if ((employee instanceof Manager) || (employee instanceof Director)) {
             Call queuedCallForManagerOrDirector = callQueueForManagerOrDirector.poll();  // Selecting the first call in queue
             if(queuedCallForManagerOrDirector != null){
                 employee.receiveCall(queuedCallForManagerOrDirector); // Receiving the call from queue

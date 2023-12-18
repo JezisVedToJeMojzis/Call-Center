@@ -16,7 +16,7 @@ public class KeyboardInput {
         }
         catch (Exception e)
         {
-            System.out.println("Wrong input. Try again.");
+            System.out.println("Wrong input. Try again.\n");
             n = readInt(string_for_user);
         }
 
@@ -34,7 +34,7 @@ public class KeyboardInput {
             input = keyboardInput.readLine();
             uuid = UUID.fromString(input);
         } catch (IOException | IllegalArgumentException e) {
-            System.out.println("Wrong input or invalid UUID format. Try again.");
+            System.out.println("Wrong input or invalid UUID format. Try again.\n");
             uuid = readUUID(prompt);
         }
 
