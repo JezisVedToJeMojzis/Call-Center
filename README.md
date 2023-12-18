@@ -62,7 +62,7 @@ After finishing call, the call is stored in list of finished calls.
 ### CallCenter
 The CallCenter class is implemented as a Singleton, ensuring that there is only one instance of the call center in the entire application. 
 
-** Attributes: **
+**Attributes:**
 ```java
 private static CallCenter instance;
 private List<Employee> employees;
@@ -73,14 +73,14 @@ private Queue<Call> callQueueForManagerOrDirector;
 private Queue<Call> callQueueForDirector;
 ```
 
-** Features: **
+**Features:**
 - Processes and dispatches incoming calls to available employees.
 - Maintains a list of employees, including Respondents, Managers, and Directors.
 - Maintains a list of all and finished calls.
 - Implements a queue system logic for handling scenarios where all employees are not available.
 - Provides a centralized point for managing the state of the call center.
 
-** Important methods: **
+**Important methods:**
 ```java
 // Create call center using callCenterFactory
 CallCenterFactory callCenterFactory = new CallCenterFactory();
@@ -96,7 +96,7 @@ call.Center.receiveCall(call); // Process the incoming call
 The Call class represents an incoming telephone call within the Call Center system. 
 When a call is created, it can be dispatched to the Call Center, which then assigns an available employee to handle the call or set the call in queue.
 
-** Attributes: **
+**Attributes:**
 ```java
 private UUID id = UUID.randomUUID(); // Assign random ID to call
 private Integer requiredExperienceLevel = 1; // Default is the lowest experience level
@@ -105,7 +105,7 @@ private boolean inQueue = false; // Call is or is not currently in queue
 private boolean callEnded = false; // Call is or is not finished 
 ```
 
-** Important methods: **
+**Important methods:**
 ```java
 // Create call using callFactory
 CallFactory callFactory = new CallFactory();
@@ -116,10 +116,11 @@ call.setRequiredExperienceLevel(int); // Set required experience level to handle
 
 ### Employee
 The Employee class represents a superclass for subclasses Respondents, Managers, and Directors. 
-Each employee is equipped with common attributes and methods, facilitating consistent behavior across the system.
+Each employee is equipped with common attributes and methods, facilitating consistent behavior across the system. 
+The Employee class leverages polymorphism, allowing instances of its subclasses to be treated as instances of the superclass.
 There is a hierarchy between employees based on thier experience level.
 
-** Common Attributes: **
+**Common Attributes:**
 ```java
 private UUID id = UUID.randomUUID(); // Assign random ID to employee
 private String position; // Position of employee (Respondent/Manager/Director)
@@ -127,7 +128,7 @@ private Integer experienceLevel; // Level of experience to be able to handle a c
 private UUID assignedCall = null; // ID of assigned call
 ```
 
-** Common methods: **
+**Common methods:**
 ```java
 // Create Singleton instance of director
 EmployeeFactory directorFactory = new DirectorFactory();
