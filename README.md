@@ -99,7 +99,7 @@ When a call is created, it can be dispatched to the Call Center, which then assi
 **Attributes:**
 ```java
 private UUID id = UUID.randomUUID(); // Assign random ID to call
-private Integer requiredExperienceLevel = 1; // Default is the lowest experience level
+private Integer requiredExperienceLevel = 1; // Lowest = 1 / Highest = 10
 private UUID callHandler = null; // ID of employee that is handling the call
 private boolean inQueue = false; // Call is or is not currently in queue
 private boolean callEnded = false; // Call is or is not finished 
@@ -119,6 +119,11 @@ The Employee class represents a superclass for subclasses Respondents, Managers,
 Each employee is equipped with common attributes and methods, facilitating consistent behavior across the system. 
 The Employee class leverages polymorphism, allowing instances of its subclasses to be treated as instances of the superclass.
 There is a hierarchy between employees based on thier experience level.
+
+**Experience level:**
+- Respondent = level 3
+- Manager = level 5
+- Director = level 10
 
 **Common Attributes:**
 ```java
@@ -154,9 +159,10 @@ The Call Center Management System includes a Command Line Interface (CLI) for ea
 Through the CLI, users can initiate calls, manage employees, and monitor the overall state of the call center.
 
 ### Usage
-1. Run the application from the command line.
-2. Follow the on-screen prompts to navigate through the available options.
-3. Interact with the CLI to hire employees, create, dispatch and finish calls, and perform other commands.
+1. Add ConsoleInterface.controller(); to main file.
+2. Run the application.
+3. Follow the on-screen prompts in terminal to navigate through the available options.
+4. Interact with the CLI to hire employees, create, dispatch and finish calls, and perform other commands.
 
 ### Manual
 - Press 0 to end session.
