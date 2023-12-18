@@ -154,9 +154,10 @@ The Call Center Management System includes a Command Line Interface (CLI) for ea
 Through the CLI, users can initiate calls, manage employees, and monitor the overall state of the call center.
 
 ### Usage
-1. Run the application from the command line.
-2. Follow the on-screen prompts to navigate through the available options.
-3. Interact with the CLI to hire employees, create, dispatch and finish calls, and perform other commands.
+1. Add ConsoleInterface.controller(); to main file.
+2. Run the application.
+3. Follow the on-screen prompts in terminal to navigate through the available options.
+4. Interact with the CLI to hire employees, create, dispatch and finish calls, and perform other commands.
 
 ### Manual
 - Press 0 to end session.
