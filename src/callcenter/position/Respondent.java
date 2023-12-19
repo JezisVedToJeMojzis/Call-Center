@@ -15,7 +15,7 @@ public class Respondent extends Employee {
         // Check if respondent has enough of experience to handle the call
         if(enoughExperienceLevel(getExperienceLevel(), call.getRequiredExperienceLevel()) == false){
             System.out.println("Respondent" + " (ID: " + getId() + ", Experience level: " + getExperienceLevel() + ") is now handling the call " + "(ID: " + call.getId() + ", Required experience level: " + call.getRequiredExperienceLevel() + ")");
-            System.out.println("Respondent " + "(ID: " + getId() + ") is not able to handle this call. Escalating the call to Manager...");
+            System.out.println("Respondent " + "(ID: " + getId() + ") is not able to handle this call. Escalating the call to Manager... Respondent is checking the queue for a new call.");
             escalateCall(call); // Escalating call to manager
         }
         else{

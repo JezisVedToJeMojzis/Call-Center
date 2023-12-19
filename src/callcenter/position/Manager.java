@@ -28,7 +28,7 @@ public class Manager extends Employee {
         else{ // Manager is available
             // Manager does not have enough of experience to handle the call
             if(enoughExperienceLevel(getExperienceLevel(), call.getRequiredExperienceLevel()) == false){
-                System.out.println("Manager " + "(ID: " + getId() + ") is not able to handle this call. Escalating the call to Director...");
+                System.out.println("Manager " + "(ID: " + getId() + ") is not able to handle this call. Escalating the call to Director... Manager is checking the queue for a new call.");
                 setAssignedCall(null);
                 escalateCall(call); // Escalating call to director
                 CallCenter.getInstance().processQueue(this); // Employee can get a new call
