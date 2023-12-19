@@ -28,8 +28,7 @@ public class Manager extends Employee {
         else{ // Manager is available
             // Manager does not have enough of experience to handle the call
             if(enoughExperienceLevel(getExperienceLevel(), call.getRequiredExperienceLevel()) == false){
-                System.out.println("Manager " + "(ID: " + getId() + ") is not able to handle this call. Escalating the call to Director... Manager is checking the queue for a new call.");
-                setAssignedCall(null);
+                System.out.println("Manager " + "(ID: " + getId() + ") is not able to handle this call (ID: " + call.getId() + "). Escalating the call to Director... Manager " + "(ID: " + getId() + ") is checking the queue for a new call.");
                 escalateCall(call); // Escalating call to director
                 CallCenter.getInstance().processQueue(this); // Employee can get a new call
             }else{ // Manager has enough of experience to handle the call
@@ -56,6 +55,7 @@ public class Manager extends Employee {
 
     // Method to escalate call if the Manager is not available or not able to handle call
     public void escalateCall(Call call) {
+        call.setCallHandler(null);
         Director.getInstance().receiveCall(call); // Escalating the call to director
     }
 
@@ -63,9 +63,9 @@ public class Manager extends Employee {
     @Override
     public void finishCall() {
         if (getAssignedCall() != null) {
+            CallCenter.getInstance().addToFinishedCalls(this.getAssignedCall()); // Adding call to list of finished calls
             setAssignedCall(null); // Manager is available again
             CallCenter.getInstance().processQueue(this); // Employee can get a new call
-            CallCenter.getInstance().addToFinishedCalls(this.getAssignedCall()); // Adding call to list of finished calls
         } else {
             System.out.println("Manager (ID: " + getId() + ") is not in a call.");
         }

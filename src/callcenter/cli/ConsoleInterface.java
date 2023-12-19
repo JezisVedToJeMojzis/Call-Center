@@ -57,9 +57,11 @@ public class ConsoleInterface {
             respondentFactory.createEmployee();
         }
 
-        System.out.println("You have chosen to have " + inputNumberOfRespondents + " respondents in you call center!");
-        System.out.println("Below you can see the details of the respondents + their manager and director within the call center. Note: Every employee has a specific level of experience.");
-        System.out.println("Employees of call center: " + callCenter.getEmployees());
+        System.out.println("\nYou have chosen to have " + inputNumberOfRespondents + " respondents in you call center!");
+        System.out.println("Below you can see the details of the respondents + their manager and director within the call center. Note: Every employee has a specific level of experience.\n");
+        for(Employee employee : callCenter.getEmployees()){
+            System.out.println(employee);
+        }
 
         System.out.println("\nPress 1 and enter to view the manual...");
 
@@ -135,7 +137,7 @@ public class ConsoleInterface {
                     UUID uuid = KeyboardInput.readUUID("Type ID of employee you want to finish call (must be UUID): ");
                     for(Employee employee : CallCenter.getInstance().getEmployees()){
                         if(employee.getId().equals(uuid) && employee.getAssignedCall() != null){
-                            System.out.println("\n" + employee.getPosition() + " (ID: " + employee.getId() + ") has finished call and is checking if there are other calls for him in the queue.");
+                            System.out.println("\n" + employee.getPosition() + " (ID: " + employee.getId() + ") has finished call (ID: " + employee.getAssignedCall() + ") and is checking if there are other calls for him in the queue.");
                             employee.finishCall();
                         }
                         else if(employee.getId().equals(uuid) && employee.getAssignedCall() == null){

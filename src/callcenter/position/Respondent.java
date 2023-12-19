@@ -15,7 +15,7 @@ public class Respondent extends Employee {
         // Check if respondent has enough of experience to handle the call
         if(enoughExperienceLevel(getExperienceLevel(), call.getRequiredExperienceLevel()) == false){
             System.out.println("Respondent" + " (ID: " + getId() + ", Experience level: " + getExperienceLevel() + ") is now handling the call " + "(ID: " + call.getId() + ", Required experience level: " + call.getRequiredExperienceLevel() + ")");
-            System.out.println("Respondent " + "(ID: " + getId() + ") is not able to handle this call. Escalating the call to Manager... Respondent is checking the queue for a new call.");
+            System.out.println("Respondent " + "(ID: " + getId() + ") is not able to handle this call (ID: " + call.getId() + "). Escalating the call to Manager... Respondent " + "(ID: " + getId() + ") is checking the queue for a new call.");
             escalateCall(call); // Escalating call to manager
         }
         else{
@@ -42,6 +42,7 @@ public class Respondent extends Employee {
     // Method to escalate call if the Respondent is not available or not able to handle call
     public void escalateCall(Call call) {
         setAssignedCall(null);
+        call.setCallHandler(null);
         Manager.getInstance().receiveCall(call); // Escalating the call to manager
         CallCenter.getInstance().processQueue(this); // Employee can get a new call
     }
@@ -50,9 +51,9 @@ public class Respondent extends Employee {
     @Override
     public void finishCall(){
         if(getAssignedCall() != null){
+            CallCenter.getInstance().addToFinishedCalls(this.getAssignedCall()); // Adding call to list of finished calls
             setAssignedCall(null); // Respondent is available again
             CallCenter.getInstance().processQueue(this); // Employee can get a new call
-            CallCenter.getInstance().addToFinishedCalls(this.getAssignedCall()); // Adding call to list of finished calls
         }else{
             System.out.println("Respondent (ID: " + getId() + ") is not in a call.");
         }
